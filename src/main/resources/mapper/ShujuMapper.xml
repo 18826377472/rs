@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.rs.mapper.ShujuMapper">
+
+    <resultMap id="ShujuEntityMap" type="com.cy.rs.entity.Shuju">
+            <!--        将表中与实体类属性不一致的进行匹配指定，名称一致的可以省略不写-->
+            <!--        在定义规则时主键字段不能省略-->
+            <id column="id" property="id"></id>
+            <result column="twenty_one" property="twentyOne"></result>
+            <result column="twenty_two" property="twentyTwo"></result>
+            <result column="twenty_three" property="twentyThree"></result>
+            <result column="twenty_four" property="twentyFour"></result>
+            <result column="twenty_five" property="twentyFive"></result>
+            <result column="twenty_six" property="twentySix"></result>
+            <result column="twenty_seven" property="twentySeven"></result>
+            <result column="twenty_eight" property="twentyEight"></result>
+            <result column="twenty_nine" property="twentyNine"></result>
+            <result column="thirty_one" property="thirtyOne"></result>
+            <result column="thirty_two" property="thirtyTwo"></result>
+            <result column="thirty_three" property="thirtyThree"></result>
+            <result column="thirty_four" property="thirtyFour"></result>
+            <result column="thirty_five" property="thirtyFive"></result>
+            <result column="thirty_six" property="thirtySix"></result>
+            <result column="thirty_seven" property="thirtySeven"></result>
+            <result column="thirty_eight" property="thirtyEight"></result>
+            <result column="thirty_nine" property="thirtyNine"></result>
+            <result column="forty_one" property="fortyOne"></result>
+            <result column="forty_two" property="fortyTwo"></result>
+            <result column="forty_three" property="fortyThree"></result>
+            <result column="forty_four" property="fortyFour"></result>
+            <result column="forty_five" property="fortyFive"></result>
+            <result column="forty_six" property="fortySix"></result>
+            <result column="forty_seven" property="fortySeven"></result>
+            <result column="forty_eight" property="fortyEight"></result>
+            <result column="forty_nine" property="fortyNine"></result>
+            <result column="fifty_one" property="fiftyOne"></result>
+            <result column="fifty_two" property="fiftyTwo"></result>
+            <result column="fifty_three" property="fiftyThree"></result>
+        </resultMap>
+
+            <select id="selectByCeshi1" resultMap="ShujuEntityMap">
+                SELECT * FROM ceshi1
+            </select>
+            <select id="selectByCeshi2" resultMap="ShujuEntityMap">
+                SELECT * FROM ceshi2
+            </select>
+            <select id="selectByCeshi3" resultMap="ShujuEntityMap">
+                SELECT * FROM ceshi3
+            </select>
+            <select id="selectByCeshi4" resultMap="ShujuEntityMap">
+                SELECT * FROM ceshi4
+            </select>
+            <select id="selectByCeshi5" resultMap="ShujuEntityMap">
+                SELECT * FROM ceshi5
+            </select>
+            <select id="selectByCeshi6" resultMap="ShujuEntityMap">
+                SELECT * FROM ceshi6
+            </select>
+            <select id="selectByCeshi7" resultMap="ShujuEntityMap">
+                SELECT * FROM ceshi7
+            </select>
+            <select id="selectByCeshi8" resultMap="ShujuEntityMap">
+                SELECT * FROM ceshi8
+            </select>
+            <select id="selectByCeshi9" resultMap="ShujuEntityMap">
+                SELECT * FROM ceshi9
+            </select>
+            <select id="selectByCeshi10" resultMap="ShujuEntityMap">
+                SELECT * FROM ceshi10
+            </select>
+            <select id="selectByCeshi11" resultMap="ShujuEntityMap">
+                SELECT * FROM ceshi11
+            </select>
+            <select id="selectByCeshi12" resultMap="ShujuEntityMap">
+                SELECT * FROM ceshi12
+            </select>
+</mapper>

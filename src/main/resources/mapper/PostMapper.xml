@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.rs.mapper.PostMapper">
+    <resultMap id="PostEntityMap" type="com.cy.rs.entity.Post">
+        <!--        将表中与实体类属性不一致的进行匹配指定，名称一致的可以省略不写-->
+        <!--        在定义规则时主键字段不能省略-->
+        <id column="id" property="id"></id>
+    </resultMap>
+
+    <select id="findByPost" resultMap="PostEntityMap">
+        SELECT * FROM post WHERE post =#{post}
+    </select>
+
+</mapper>

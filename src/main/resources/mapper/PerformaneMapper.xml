@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.rs.mapper.PerformaneMapper">
+
+    <resultMap id="EmployeeEntityMap" type="com.cy.rs.entity.Performane">
+        <!--        将表中与实体类属性不一致的进行匹配指定，名称一致的可以省略不写-->
+        <!--        在定义规则时主键字段不能省略-->
+        <result column="created_time" property="createdTime"></result>
+        <result column="id" property="employeeId"></result>
+    </resultMap>
+
+    <resultMap id="performaneEntityMap" type="com.cy.rs.entity.Performane">
+        <!--        将表中与实体类属性不一致的进行匹配指定，名称一致的可以省略不写-->
+        <!--        在定义规则时主键字段不能省略-->
+        <id column="id" property="id"></id>
+        <result column="created_time" property="createdTime"></result>
+        <result column="employee_id" property="employeeId"></result>
+    </resultMap>
+
+
+    <select id="findByPostAndNumber" resultMap="performaneEntityMap">
+        select * FROM performane WHERE 1=1
+        <if test="post!=null">
+            AND post = #{post}
+        </if>
+        <if test="number!=null">
+            AND number = #{number}
+        </if>
+    </select>
+    <select id="findByPostAndName" resultMap="performaneEntityMap">
+        select * FROM performane WHERE 1=1
+        <if test="post!=null">
+            AND post = #{post}
+        </if>
+        <if test="name!=null">
+            AND name = #{name}
+        </if>
+    </select>
+
+    <select id="findNumberAndCreatedTime" resultMap="performaneEntityMap">
+        select * FROM performane WHERE number = #{number}
+                                                 and created_time = #{createdTime}
+    </select>
+
+    <select id="findNameAndCreatedTime" resultMap="performaneEntityMap">
+        select * FROM performane WHERE name = #{name}
+                                   and created_time = #{createdTime}
+    </select>
+
+    <select id="findByPost" resultMap="performaneEntityMap">
+        select * FROM performane WHERE post = #{post}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+            performane
+            ( number,name,unit,post,created_time,scores,factor,employee_id
+
+        ) VALUES
+            (#{number},#{name},#{unit},#{post},#{createdTime},#{scores},#{factor},#{employeeId})
+    </insert>
+
+    <select id="select" resultMap="performaneEntityMap">
+        SELECT * FROM performane
+    </select>
+
+    <update id="update">
+        update performane set
+                number=#{number},name=#{name},unit=#{unit},post=#{post},
+                created_time=#{createdTime},scores=#{scores},
+                factor=#{factor},employee_id=#{employeeId}
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM performane WHERE id = #{id}
+    </delete>
+
+    <select id="findById" resultMap="performaneEntityMap">
+        SELECT * FROM performane WHERE id=#{id}
+    </select>
+
+    <select id="findByFactorMax" parameterType="java.lang.String" resultType="java.lang.Double">
+        SELECT factor
+        FROM performane
+        WHERE post = #{post} and created_time = #{createdTime}
+        ORDER BY factor DESC
+            LIMIT 1
+    </select>
+    <select id="findByFactorMin" parameterType="String" resultType="java.lang.Double">
+        SELECT factor
+        FROM performane
+        WHERE post = #{post} and created_time = #{createdTime}
+        ORDER BY factor ASC
+            LIMIT 1
+    </select>
+    <select id="findByFactorAvg" parameterType="String" resultType="java.lang.Double">
+        SELECT AVG(factor) AS averageFactor
+        FROM performane
+        WHERE post = #{post} and created_time = #{createdTime}
+    </select>
+    <select id="findByPostAndCreatedTime" resultMap="performaneEntityMap">
+        SELECT * FROM performane
+        WHERE post = #{post} and created_time = #{createdTime}
+        ORDER BY factor DESC
+    </select>
+
+    <select id="findCountNumber" resultType="java.lang.Double">
+        SELECT COUNT(number) FROM performane WHERE created_time=#{createdTime}
+    </select>
+    <select id="findCountPost" resultType="java.lang.Double">
+        SELECT COUNT(DISTINCT post) FROM performane WHERE created_time=#{createdTime}
+    </select>
+    <select id="findAvgFactor" resultType="java.lang.Double">
+        SELECT AVG(factor) FROM performane WHERE created_time=#{createdTime}
+    </select>
+    <select id="findCountNumberByPost" resultType="java.lang.Double">
+        SELECT COUNT(number) FROM performane WHERE created_time=#{createdTime} AND post =#{post}
+    </select>
+    <select id="findAvgFactorByPost" resultType="java.lang.Double">
+        SELECT AVG(factor) FROM performane WHERE created_time=#{createdTime} AND post =#{post}
+    </select>
+
+    <select id="findFactorByname" resultType="java.lang.Double">
+        SELECT factor FROM performane WHERE name = #{name} AND created_time = #{createdTime}
+    </select>
+    <select id="findFactorByNumber" resultType="java.lang.Double">
+        SELECT factor FROM performane WHERE number = #{number} AND created_time = #{createdTime}
+    </select>
+
+    <insert id="addBillExcelFileToDatabase" useGeneratedKeys="true" keyProperty="id">
+        insert into performane
+        (number,name,unit,post,created_time,scores,factor)
+        values
+            (#{number},#{name},#{unit},#{post},#{createdTime},#{scores},#{factor})
+
+    </insert>
+
+
+</mapper>

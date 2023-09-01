@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.rs.mapper.BillMapper">
+
+
+    <resultMap id="BillEntityMap" type="com.cy.rs.entity.Bill">
+        <!--        将表中与实体类属性不一致的进行匹配指定，名称一致的可以省略不写-->
+        <!--        在定义规则时主键字段不能省略-->
+        <id column="id" property="id"></id>
+        <result column="bill_year" property="billYear"></result>
+        <result column="bill_month" property="billMonth"></result>
+        <result column="building_id" property="buildingId"></result>
+        <result column="room_id" property="roomId"></result>
+        <result column="water_used" property="waterUsed"></result>
+        <result column="water_fee" property="waterFee"></result>
+        <result column="energy_used" property="energyUsed"></result>
+        <result column="energy_fee" property="energyFee"></result>
+        <result column="total_fee" property="totalFee"></result>
+
+    </resultMap>
+    <insert id="addBillExcelFileToDatabase" useGeneratedKeys="true" keyProperty="id">
+        insert into t_bill
+        (bill_year,bill_month,building_id,room_id,
+         water_used,water_fee,energy_used,energy_fee,total_fee,paid)
+        values
+            (#{billYear},#{billMonth},#{buildingId},#{roomId},#{waterUsed},#{waterFee},
+             #{energyUsed},#{energyFee},#{totalFee},#{paid})
+
+    </insert>
+    <select id="findById" resultMap="BillEntityMap">
+        SELECT * FROM t_bill WHERE id =#{id}
+    </select>
+    <select id="select" resultMap="BillEntityMap">
+        SELECT * FROM t_bill
+    </select>
+
+</mapper>

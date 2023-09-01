@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.rs.mapper.EmployeeMapper">
+    <resultMap id="EmployeeEntityMap" type="com.cy.rs.entity.Employee">
+        <!--        将表中与实体类属性不一致的进行匹配指定，名称一致的可以省略不写-->
+        <!--        在定义规则时主键字段不能省略-->
+        <id column="id" property="id"></id>
+        <result column="twenty_one" property="twentyOne"></result>
+        <result column="twenty_two" property="twentyTwo"></result>
+        <result column="twenty_three" property="twentyThree"></result>
+        <result column="twenty_four" property="twentyFour"></result>
+        <result column="twenty_five" property="twentyFive"></result>
+        <result column="twenty_six" property="twentySix"></result>
+        <result column="twenty_seven" property="twentySeven"></result>
+        <result column="twenty_eight" property="twentyEight"></result>
+        <result column="twenty_nine" property="twentyNine"></result>
+        <result column="thirty_one" property="thirtyOne"></result>
+        <result column="thirty_two" property="thirtyTwo"></result>
+        <result column="thirty_three" property="thirtyThree"></result>
+        <result column="thirty_four" property="thirtyFour"></result>
+        <result column="thirty_five" property="thirtyFive"></result>
+        <result column="thirty_six" property="thirtySix"></result>
+        <result column="thirty_seven" property="thirtySeven"></result>
+        <result column="thirty_eight" property="thirtyEight"></result>
+        <result column="thirty_nine" property="thirtyNine"></result>
+        <result column="forty_one" property="fortyOne"></result>
+        <result column="forty_two" property="fortyTwo"></result>
+        <result column="forty_three" property="fortyThree"></result>
+        <result column="forty_four" property="fortyFour"></result>
+        <result column="forty_five" property="fortyFive"></result>
+        <result column="forty_six" property="fortySix"></result>
+        <result column="forty_seven" property="fortySeven"></result>
+        <result column="forty_eight" property="fortyEight"></result>
+        <result column="forty_nine" property="fortyNine"></result>
+        <result column="fifty_one" property="fiftyOne"></result>
+        <result column="fifty_two" property="fiftyTwo"></result>
+        <result column="fifty_three" property="fiftyThree"></result>
+        <result column="created_time" property="createdTime"></result>
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+                employee (
+                 number,name,unit,post,sex,status,degree,age,seniority,one,
+                two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,
+                thirteen,fourteen,fifteen,sixteen,seventeen,eighteen,nineteen,
+                twenty,twenty_one,twenty_two,twenty_three,twenty_four,twenty_five,
+                 twenty_six,twenty_seven,twenty_eight,twenty_nine,thirty,thirty_one,
+                 thirty_two,thirty_three,thirty_four,thirty_five,thirty_six,thirty_seven,
+                 thirty_eight,thirty_nine,forty,forty_one,forty_two,forty_three,forty_four,
+                 forty_five,forty_six,forty_seven,forty_eight,forty_nine,fifty,fifty_one,
+                 fifty_two,fifty_three,created_time
+        ) VALUES
+                (#{number},#{name},#{unit},#{post},#{sex},#{status},#{degree},#{age},#{seniority},
+                 #{one},#{two},#{three},#{four},#{five},#{six},#{seven},#{eight},#{nine},#{ten},
+                 #{eleven},#{twelve},#{thirteen},#{fourteen},#{fifteen},#{sixteen},#{seventeen},#{eighteen},
+                 #{nineteen},#{twenty},#{twentyOne},#{twentyTwo},#{twentyThree},#{twentyFour},#{twentyFive},#{twentySix},
+                 #{twentySeven},#{twentyEight},#{twentyNine},#{thirty},#{thirtyOne},#{thirtyTwo},#{thirtyThree},#{thirtyFour},
+                 #{thirtyFive},#{thirtySix},#{thirtySeven},#{thirtyEight},#{thirtyNine},#{forty},#{fortyOne},#{fortyTwo},
+                 #{fortyThree},#{fortyFour},#{fortyFive},#{fortySix},#{fortySeven},#{fortyEight},#{fortyNine},#{fifty},
+                 #{fiftyOne},#{fiftyTwo},#{fiftyThree},#{createdTime})
+    </insert>
+
+    <select id="findByNumberAndCreatedTime" resultMap="EmployeeEntityMap">
+        SELECT * FROM employee WHERE number = #{number} AND created_time = #{createdTime}
+    </select>
+
+    <select id="findByNumber" resultMap="EmployeeEntityMap">
+        SELECT * FROM employee WHERE name = #{name}
+    </select>
+
+    <update id="updateById">
+        update employee set
+                number=#{number},name=#{name},unit=#{unit},post=#{post},
+                sex=#{sex},status=#{status},degree=#{degree},age=#{age},
+                seniority=#{seniority},one=#{one},two=#{two},three=#{three},
+                four=#{four},five=#{five},six=#{six},seven=#{seven},
+                eight=#{eight},nine=#{nine},ten=#{ten},eleven=#{eleven},
+                twelve=#{twelve},thirteen=#{thirteen},fourteen=#{fourteen},fifteen=#{fifteen},
+                sixteen=#{sixteen},seventeen=#{seventeen},eighteen=#{eighteen},nineteen=#{nineteen},
+                twenty=#{twenty},twenty_one=#{twentyOne},twenty_two=#{unit},twenty_three=#{post},
+                twenty_four=#{number},twenty_five=#{name},twenty_six=#{unit},twenty_seven=#{post},
+                twenty_eight=#{number},twenty_nine=#{name},thirty=#{thirty},thirty_one=#{thirtyOne},
+                thirty_two=#{thirtyTwo},thirty_three=#{thirtyThree},thirty_four=#{thirtyFour},thirty_five=#{thirtyFive},
+                thirty_six=#{thirtySix},thirty_seven=#{thirtySeven},thirty_eight=#{thirtyEight},thirty_nine=#{thirtyNine},
+                forty=#{forty}, forty_one=#{fortyOne},forty_two=#{fortyTwo},forty_three=#{fortyThree},
+                forty_four=#{fortyFour},forty_five=#{fortyFive},forty_six=#{fortySix},forty_seven=#{fortySeven},
+                forty_eight=#{fortyEight},forty_nine=#{fortyNine},fifty=#{fifty},fifty_one=#{fiftyOne},
+                fifty_two=#{fiftyTwo},fifty_three=#{fiftyThree},created_time=#{createdTime}
+        WHERE id = #{id}
+    </update>
+
+    <select id="findByCreatedTime" resultMap="EmployeeEntityMap">
+        SELECT * FROM employee WHERE created_time=#{createdTime}
+    </select>
+
+    <select id="findByCreatedTime1" resultMap="EmployeeEntityMap">
+        SELECT id,name,number FROM employee WHERE created_time=#{createdTime}
+    </select>
+
+    <select id="findById" resultMap="EmployeeEntityMap">
+        SELECT * FROM employee WHERE id  = #{id}
+    </select>
+
+    <delete id="deleteById">
+        DELETE FROM employee WHERE id = #{id}
+    </delete>
+
+    <select id="select" resultMap="EmployeeEntityMap">
+        SELECT * FROM employee
+    </select>
+
+    <select id="findByNumber2" resultMap="EmployeeEntityMap">
+        select id,name,unit,post,created_time FROM employee WHERE number = #{number}
+    </select>
+    <select id="findByName" resultMap="EmployeeEntityMap">
+        select id,number,name,unit,post,created_time FROM employee WHERE name = #{name}
+    </select>
+    <select id="findByNumberAndCreatedTime2" resultMap="EmployeeEntityMap">
+        select id,name,unit,post,created_time FROM employee WHERE number = #{number} AND created_time = #{createdTime}
+    </select>
+<!--    <select id="findByNameAndCreatedTime" resultMap="EmployeeEntityMap">-->
+<!--        select id,name,unit,post,created_time FROM employee WHERE name = #{name} AND created_time = #{createdTime}-->
+<!--    </select>-->
+    <select id="findByNameAndCreatedTime" resultMap="EmployeeEntityMap">
+        select * FROM employee WHERE name = #{name} AND created_time = #{createdTime}
+    </select>
+    <select id="findByNameAndCreatedTimeNew" resultMap="EmployeeEntityMap">
+        select * FROM employee WHERE name = #{name} AND created_time = #{createdTime}
+    </select>
+    <select id="findAvgAge" resultType="java.lang.Double">
+        SELECT AVG(age) FROM employee WHERE created_time=#{createdTime}
+    </select>
+
+    <select id="overallPortrait" resultType="java.lang.Integer">
+        select number FROM employee WHERE created_time=#{createdTime}
+        <if test="unit!=null">
+            AND unit = #{unit}
+        </if>
+        <if test="post!=null">
+            AND post = #{post}
+        </if>
+        <if test="sex!=null">
+            AND sex = #{sex}
+        </if>
+        <if test="minAge != null">
+            AND age &gt;= #{minAge}
+        </if>
+        <if test="maxAge != null">
+            AND age &lt;= #{maxAge}
+        </if>
+        <if test="degree!=null">
+            AND degree = #{degree}
+        </if>
+    </select>
+    <select id="selectByCreatedTime" resultType="java.lang.String">
+        SELECT DISTINCT created_time
+        FROM employee
+    </select>
+    <select id="selectByUnit" resultType="java.lang.String">
+        SELECT DISTINCT unit
+        FROM employee
+    </select>
+
+    <select id="findByPostAndNumber" resultMap="EmployeeEntityMap">
+        select * FROM employee WHERE 1=1
+        <if test="post!=null">
+            AND post = #{post}
+        </if>
+        <if test="number!=null">
+            AND number = #{number}
+        </if>
+    </select>
+    <select id="findByPostAndName" resultMap="EmployeeEntityMap">
+        select * FROM employee WHERE 1=1
+        <if test="post!=null">
+            AND post = #{post}
+        </if>
+        <if test="name!=null">
+            AND name = #{name}
+        </if>
+    </select>
+    <select id="findByPost" resultMap="EmployeeEntityMap">
+        select * FROM employee WHERE post = #{post}
+    </select>
+    <select id="findByPostAndCreatedTime" resultMap="EmployeeEntityMap">
+        select * FROM employee WHERE post = #{post} and created_time=#{createdTime}
+    </select>
+
+    <insert id="addBillExcelFileToDatabase" useGeneratedKeys="true" keyProperty="id">
+        insert into employee
+        (number,name,unit,post,sex,status,degree,age,seniority,one,
+         two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,
+         thirteen,fourteen,fifteen,sixteen,seventeen,eighteen,nineteen,
+         twenty,twenty_one,twenty_two,twenty_three,twenty_four,twenty_five,
+         twenty_six,twenty_seven,twenty_eight,twenty_nine,thirty,thirty_one,
+         thirty_two,thirty_three,thirty_four,thirty_five,thirty_six,thirty_seven,
+         thirty_eight,thirty_nine,forty,forty_one,forty_two,forty_three,forty_four,
+         forty_five,forty_six,forty_seven,forty_eight,forty_nine,fifty,fifty_one,
+         fifty_two,fifty_three,created_time)
+        values
+            (#{number},#{name},#{unit},#{post},#{sex},#{status},#{degree},#{age},#{seniority},
+             #{one},#{two},#{three},#{four},#{five},#{six},#{seven},#{eight},#{nine},#{ten},
+             #{eleven},#{twelve},#{thirteen},#{fourteen},#{fifteen},#{sixteen},#{seventeen},#{eighteen},
+             #{nineteen},#{twenty},#{twentyOne},#{twentyTwo},#{twentyThree},#{twentyFour},#{twentyFive},#{twentySix},
+             #{twentySeven},#{twentyEight},#{twentyNine},#{thirty},#{thirtyOne},#{thirtyTwo},#{thirtyThree},#{thirtyFour},
+             #{thirtyFive},#{thirtySix},#{thirtySeven},#{thirtyEight},#{thirtyNine},#{forty},#{fortyOne},#{fortyTwo},
+             #{fortyThree},#{fortyFour},#{fortyFive},#{fortySix},#{fortySeven},#{fortyEight},#{fortyNine},#{fifty},
+             #{fiftyOne},#{fiftyTwo},#{fiftyThree},#{createdTime})
+
+    </insert>
+</mapper>

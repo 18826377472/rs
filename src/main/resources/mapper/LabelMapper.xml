@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.rs.mapper.LabelMapper">
+
+
+    <resultMap id="LabelEntityMap" type="com.cy.rs.entity.Label">
+            <!--        将表中与实体类属性不一致的进行匹配指定，名称一致的可以省略不写-->
+            <!--        在定义规则时主键字段不能省略-->
+            <id column="id" property="id"></id>
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+            INSERT INTO
+                    t_label(
+                features
+            ) VALUES
+                    (#{features})
+    </insert>
+
+    <delete id="deleteById">
+        DELETE FROM t_label WHERE id = #{id}
+    </delete>
+
+    <select id="select" resultMap="LabelEntityMap">
+        SELECT * FROM t_label
+    </select>
+
+    <select id="findByFeatures" resultMap="LabelEntityMap">
+        SELECT * FROM t_label WHERE features = #{features}
+    </select>
+
+    <select id="findById" resultMap="LabelEntityMap">
+        SELECT * FROM t_label WHERE id = #{id}
+    </select>
+
+    <update id="update">
+        update t_label set  features=#{features}
+        WHERE id=#{id}
+    </update>
+
+</mapper>
